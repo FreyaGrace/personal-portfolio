@@ -1,0 +1,15 @@
+{ "columns":28,
+ "image":"Dungeon_object_transparent.png",
+ "imageheight":576,
+ "imagewidth":928,
+ "margin":1,
+ "name":"hall",
+ "spacing":0,
+ "tilecount":476,
+ "tiledversion":"1.12.0",
+ "tileheight":32,
+ "tilewidth":32,
+ "transparentcolor":"#000000",
+ "type":"tileset",
+ "version":"1.10"
+}

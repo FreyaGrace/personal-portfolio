@@ -1,0 +1,14 @@
+{ "columns":28,
+ "image":"roguelikeDungeon_32x32.png",
+ "imageheight":576,
+ "imagewidth":928,
+ "margin":1,
+ "name":"fffffff",
+ "spacing":0,
+ "tilecount":1798,
+ "tiledversion":"1.12.0",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":"1.10"
+}

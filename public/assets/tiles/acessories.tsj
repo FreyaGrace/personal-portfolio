@@ -1,0 +1,14 @@
+{ "columns":7,
+ "image":"[Base]BaseChip_pipo.png",
+ "imageheight":4256,
+ "imagewidth":256,
+ "margin":1,
+ "name":"acessories",
+ "spacing":0,
+ "tilecount":924,
+ "tiledversion":"1.12.0",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":"1.10"
+}
