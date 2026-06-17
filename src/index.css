@@ -63,3 +63,21 @@ body.game-mode canvas {
   max-height: 100vh;
   box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
+.gallery-modal {
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .gallery-modal {
+    padding: 10px;
+  }
+
+  .gallery-image {
+    max-height: 65vh;
+  }
+
+  .gallery-nav {
+    width: 36px;
+    height: 36px;
+  }
+}

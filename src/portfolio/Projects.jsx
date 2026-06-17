@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+const isMobile = window.innerWidth < 768;
 const categories = [
   {
     id: "university",
@@ -29,7 +29,7 @@ const categories = [
         icon: "🧩",
         github: "https://github.com/FreyaGrace/FreyaGrace.github.io.git",
         demo: "https://freyagrace.github.io",
-        status: "Completed",
+        status: "Live",
       },
       // {
       //   title: "Library Management System",
@@ -48,13 +48,38 @@ const categories = [
   icon: "💼",
   color: "#38bdf8", 
   projects: [
-    {
-      title: "Funnel Developer Intern",
-      description: "Architected high-conversion landing pages and automated lead-capture workflows. Focused on optimizing user journeys through custom Javascript integrations and GHL automation sequences to streamline engineering team operations.",
-      tech: ["Javascript", "GHL", "HTML5", "CSS3"],
+     {
+      title: "Primof Media Hub Rebranding",
+      description: "Designed and optimized high-conversion landing pages while implementing automated lead-capture workflows using GoHighLevel and JavaScript integrations. Improved user journey efficiency and streamlined internal business processes through workflow automation.",
+      tech: ["Javascript", "GHL", "HTML", "CSS"],
       icon: "🚀",
-      github: "#",
-      status: "Coming Soon", // Changed from Coming Soon to show you are active
+      images: ["/assets/primof/Screenshot 2026-04-10 145236.png",
+        "/assets/primof/4be31e17-9c2e-41fc-8f8e-749565641cc9.jpeg"
+      ],
+      status: "Completed", // Changed from Coming Soon to show you are active
+      featured: true,// Changed to false so the card actually shows up!
+    },
+     {
+      title: "Master Legal HR Website Redesign",
+      description: "Redesigned and developed a responsive website for a legal HR firm, focusing on usability, mobile responsiveness, and conversion-driven design. Enhanced user experience through improved navigation, layout structure, and optimized landing pages.",
+      tech: ["Javascript", "GHL", "HTML", "CSS"],
+      icon: "🚀",
+      demo: "https://automation.civy.io/v2/preview/1Dw0jF6sGb7CcqFYtlRP?fbclid=IwY2xjawRFeo1leHRuA2FlbQIxMQBzcnRjBmFwcF9pZAEwAAEeGb7swLlClp76vDeG9HfwAFqxl7JBDVqryFci_8jSML3HaCmgi6I-ysIJV20_aem_ZIMH4n673ImQt_CB3lPvRw#button-q1ETS7prjv",
+      status: "Live Demo", // Changed from Coming Soon to show you are active
+      featured: true,// Changed to false so the card actually shows up!
+    },
+    {
+      title: "Workflow Automation for Appointment status and mobile view optimization",
+      description:"Developed workflow automation solutions to streamline appointment status updates and reduce manual administrative tasks. Optimized mobile responsiveness and user experience across key customer-facing pages.",
+      tech: ["Javascript", "GHL", "HTML", "CSS"],
+      icon: "🚀",
+      images: ["/assets/primof/Picture1.png",
+        "/assets/primof/Picture2.png",
+        "/assets/primof/Picture3.png",
+        "/assets/primof/Picture4.png",
+        "/assets/primof/Screenshot 2026-04-10 134438.png",
+      ],
+      status: "Completed", 
       featured: true,// Changed to false so the card actually shows up!
     },
   ],
@@ -128,20 +153,25 @@ const getDirectLink = (url) => {
 
   return (
     <motion.div
-      layout
       style={{
-        background: "rgba(255,255,255,0.04)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        borderRadius: 24,
-        padding: "24px",
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        position: "relative"
+  background: "rgba(255,255,255,0.04)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: 24,
+  padding: "24px",
+  boxSizing: "border-box",
+  display: "flex",
+  flexDirection: "column",
+  position: "relative",
       }}
     >
       {/* Status & Icon Row */}
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 16 }}>
+      <div s style={{
+    display: "flex",
+    flexDirection: isMobile ? "column" : "row",
+    gap: 12,
+    alignItems: isMobile ? "stretch" : "center",
+    marginTop: "auto"
+  }}>
         <div style={{ fontSize: 24 }}>{project.icon}</div>
      <span style={{ 
   fontSize: 10, 
@@ -160,7 +190,33 @@ const getDirectLink = (url) => {
 
       <h3 style={{ fontSize: 18, fontWeight: 700, color: "white", marginBottom: 8 }}>{project.title}</h3>
       <p style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6, flex: 1, marginBottom: 20 }}>{project.description}</p>
-
+<div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 8,
+    marginBottom: 16,
+  }}
+>
+  {project.tech?.map((tech) => (
+    <span
+      key={tech}
+      style={{
+        display: "flex",
+flexWrap: "wrap",
+gap: 8,
+        padding: "4px 10px",
+        borderRadius: "999px",
+        background: "rgba(255,255,255,0.08)",
+        color: "#cbd5e1",
+        fontSize: 11,
+        border: "1px solid rgba(255,255,255,0.08)",
+      }}
+    >
+      {tech}
+    </span>
+  ))}
+</div>
       {/* Action Buttons */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "auto" }}>
         {!project.placeholder && (
@@ -200,9 +256,18 @@ const getDirectLink = (url) => {
             }}
             onClick={() => setShowGallery(false)}
           >
-            <button style={{ position: 'absolute', top: 30, right: 30, color: 'white', background: 'none', border: 'none', fontSize: 32, cursor: 'pointer' }}>✕</button>
+            <button style={{ position: 'absolute', top: isMobile ? 10 : 30, right: isMobile ? 10 : 30, color: 'white', background: 'none', border: 'none',fontSize: isMobile ? 24 : 32, cursor: 'pointer' }}>✕</button>
 
-            <div style={{ display: "flex", alignItems: "center", width: "100%", maxWidth: "1100px", position: 'relative' }}>
+            <div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    maxWidth: isMobile ? "100%" : "1100px",
+    position: "relative",
+    justifyContent: "center",
+  }}
+>
               
               {/* Spinner */}
               {loading && (
@@ -218,7 +283,12 @@ const getDirectLink = (url) => {
               )}
 
               {gallery.length > 1 && (
-                <button onClick={(e) => { e.stopPropagation(); setImgIndex((imgIndex - 1 + gallery.length) % gallery.length); setLoading(true); }} style={navBtnStyle}>◀</button>
+                <button onClick={(e) => { e.stopPropagation(); setImgIndex((imgIndex - 1 + gallery.length) % gallery.length); setLoading(true); }} style={{
+    ...navBtnStyle,
+    position: "absolute",
+    left: 10,
+    zIndex: 10,
+  }}>◀</button>
               )}
               
               <motion.img
@@ -227,12 +297,23 @@ const getDirectLink = (url) => {
                 onLoad={() => setLoading(false)} // Hide spinner when image loads
                 initial={{ opacity: 0 }} 
                 animate={{ opacity: loading ? 0 : 1 }}
-                style={{ width: "100%", maxHeight: "75vh", objectFit: "contain", borderRadius: 12 }}
+                style={{
+  width: "100%",
+  maxWidth: isMobile ? "95vw" : "100%",
+  maxHeight: isMobile ? "65vh" : "75vh",
+  objectFit: "contain",
+  borderRadius: 12
+}}
                 onClick={(e) => e.stopPropagation()}
               />
 
               {gallery.length > 1 && (
-                <button onClick={(e) => { e.stopPropagation(); setImgIndex((imgIndex + 1) % gallery.length); setLoading(true); }} style={navBtnStyle}>▶</button>
+                <button onClick={(e) => { e.stopPropagation(); setImgIndex((imgIndex + 1) % gallery.length); setLoading(true); }}  style={{
+    ...navBtnStyle,
+    position: "absolute",
+    right: 10,
+    zIndex: 10,
+  }}>▶</button>
               )}
             </div>
             
@@ -245,19 +326,18 @@ const getDirectLink = (url) => {
 }
 
 const navBtnStyle = {
-  background: 'rgba(255,255,255,0.05)',
+  background: 'rgba(105, 102, 102, 0.24)',
   border: '1px solid rgba(255,255,255,0.1)',
   color: 'white',
-  width: 50,
-  height: 50,
+  width: window.innerWidth < 768 ? 36 : 50,
+  height: window.innerWidth < 768 ? 36 : 50,
   cursor: 'pointer',
   borderRadius: '50%',
-  fontSize: '18px',
+  fontSize: window.innerWidth < 768 ? '14px' : '18px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  margin: '0 20px',
-  transition: 'all 0.2s'
+  margin: window.innerWidth < 768 ? '0 5px' : '0 20px',
 };
 export default function Projects() {
   const [active, setActive] = useState("university");
@@ -344,8 +424,11 @@ export default function Projects() {
             transition={{ duration: 0.25 }}
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-              gap: 24, // Increased gap slightly
+             gridTemplateColumns: isMobile
+  ? "1fr"
+  : "repeat(auto-fill, minmax(300px, 1fr))",
+              gap:
+              isMobile ? 60 : 24, // Increased gap slightly
             }}
           >
             {current.projects.map((project) => (

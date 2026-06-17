@@ -153,7 +153,7 @@ export default function Hero({ onProfileDoubleClick }) {
         }}/>
         {/* Photo */}
         <motion.img
-          src="/Profile2.jpg"
+          src="/profile3.png"
           alt="Fatima Grace Apinan"
           onDoubleClick={onProfileDoubleClick}
           title="Double-click to enter the RPG world!"
@@ -270,7 +270,7 @@ export default function Hero({ onProfileDoubleClick }) {
         style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 12 }}
       >
         <a
-  href="/resume.pdf"
+  href="/resume-2026.pdf"
   download
   style={{
     padding: "12px 28px",

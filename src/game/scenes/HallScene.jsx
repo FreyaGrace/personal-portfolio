@@ -7,52 +7,47 @@ import Phaser from "phaser";
 // ─────────────────────────────────────────────────────────────────────
 const ACHIEVEMENTS = {
   cert1:  { label:"Certificate", emoji:"📜", color:0xf59e0b,
-             title:"DICT Cybersecurity Seminar",
-             desc:"Completed the Department of ICT Cybersecurity awareness seminar covering network defense and data protection.",
+             title: "Build a Free Website with WordPress",
+            desc: "Completed a hands-on project creating a fully functional website using WordPress, including design customization, page setup, and basic content management.",
              img:"/assets/certs/cert1.png" },
   cert2:  { label:"Certificate", emoji:"📜", color:0xf59e0b,
-             title:"Web Development Bootcamp",
-             desc:"Completed an intensive bootcamp covering React, Node.js, and modern frontend tooling.",
+             title:"DICT How to counter when hacked?",
+             desc:"Completed training on cybersecurity fundamentals, learning how to identify and respond to cyber threats, including practical defense strategies and best practices for protecting digital assets.",
              img:"/assets/certs/cert2.png" },
-  cert3:  { label:"Certificate", emoji:"📜", color:0xf59e0b,
-             title:"AI & Machine Learning Fundamentals",
-             desc:"Earned certification in AI/ML covering supervised learning, neural networks, and model evaluation.",
+ cert3:  { label:"Diploma", emoji:"🎓", color:0xf59e0b,
+             title:"Bachelor of Science in Computer Science",
+             desc:"Graduated with a Bachelor of Science degree in Computer Science, mastering core computing principles, software engineering, and problem-solving methodologies.",
              img:"/assets/certs/cert3.png" },
-  cert4:  { label:"Certificate", emoji:"📜", color:0xf59e0b,
-             title:"Python Programming",
-             desc:"Certified in Python covering data structures, OOP, and scripting fundamentals.",
-             img:"/assets/certs/cert4.png" },
-  cert5:  { label:"Certificate", emoji:"📜", color:0xf59e0b,
-             title:"Database Administration",
-             desc:"Completed database training with MySQL — queries, normalization, and optimization.",
-             img:"/assets/certs/cert5.png" },
-  cert6:  { label:"Certificate", emoji:"📜", color:0xf59e0b,
-             title:"UI/UX Design Principles",
-             desc:"Certification in user interface and experience design — wireframing, prototyping, accessibility.",
-             img:"/assets/certs/cert6.png" },
-  award1: { label:"Award", emoji:"🏆", color:0xa78bfa,
-             title:"Best Capstone Project",
-             desc:"Awarded Best Capstone for the Infant Cry Recognition System — recognized for innovation and real-world impact.",
-             img:"/assets/certs/award1.png" },
-  award2: { label:"Award", emoji:"🎖️", color:0xa78bfa,
-             title:"Dean's List",
-             desc:"Recognized on the Dean's List for academic excellence — top 10% of the Computer Science program.",
-             img:"/assets/certs/award2.png" },
-  award3: { label:"Award", emoji:"⭐", color:0xa78bfa,
-             title:"Most Outstanding Student",
-             desc:"Awarded for exemplary academic performance, leadership, and contributions to the university community.",
-             img:"/assets/certs/award3.png" },
-  award4: { label:"Award", emoji:"🥈", color:0xa78bfa,
-             title:"Programming Competition Finalist",
-             desc:"Reached the finals of the regional inter-university programming competition.",
-             img:"/assets/certs/award4.png" },
+ cert4: { 
+    label: "Certificate", 
+    emoji: "📜", 
+    color: 0xf59e0b,
+    title: "Certificate of Internship: Funnel & Web Development",
+    desc: "Successfully completed a specialized internship focused on GHL (GoHighLevel) Funnel Marketing. Responsible for building high-converting sales funnels and implementing responsive web designs.",
+    img: "/assets/certs/cert4.jpeg" 
+  },
+  cert5: { 
+    label: "Certificate", 
+    emoji: "📜", 
+    color: 0xf59e0b,
+    title: "D'vendo Certification of Employment",
+    desc: "Professional experience as a Part-Time Auditing Clerk. Tasked with financial record verification, data reconciliation, and supporting the auditing department’s daily operations.",
+    img: "/assets/certs/cert5.jpeg" 
+  },
+  cert6: { 
+    label: "Certificate", 
+    emoji: "📜", 
+    color: 0xf59e0b,
+    title: "Sagility Certification of Employment",
+    desc: "Worked as a Customer Service Representative (CSR), managing client inquiries and providing efficient solutions within a fast-paced service environment.",
+    img: "/assets/certs/cert6.jpeg" 
+  },
 };
 
 const GUIDE_LINES = [
   "✨ Oh! A visitor! Welcome to the Hall of Achievement!\nFeel free to wander — every frame tells a story!",
   "✨ Walk up to any frame and press  E  to view it.",
   "🌟 Those certificates? Each one is a late night that became a lesson worth keeping!",
-  "🎓 The awards are quite shiny... I may have polished them a dozen times today!",
   "🏆 Walk up to any frame and press  E  to take a closer look — go on!",
   "🚪 When you're ready, the EXIT at the top takes you back outside!\nBut do linger a while... it gets quiet in here! ✨",
 ];
@@ -145,7 +140,8 @@ this.cameras.main.setBackgroundColor('#1a1a2e');
 
     // 2. Handle Logic/Interactive Types (Certs, Awards, Exit)
     // We do this BEFORE the GID check so Rectangles work!
-    if (["cert", "awards", "exit", "guide"].includes(obj.type)) {
+    // Awards are EXCLUDED from interactables now
+    if (["cert", "exit", "guide"].includes(obj.type)) {
         
         // Setup Guide coordinates
         if (obj.type === "guide") {
@@ -165,9 +161,9 @@ this.cameras.main.setBackgroundColor('#1a1a2e');
             range: obj.type === "exit" ? 56 : 60 
         });
 
-        // Add Glow only for Certs/Awards
-        if (obj.type === "cert" || obj.type === "awards") {
-            const glow = this.add.circle(cx, cy, 20, obj.type === "cert" ? 0xfbbf24 : 0xa78bfa, 0.12).setDepth(2);
+        // Add Glow only for Certs (removed for Awards)
+        if (obj.type === "cert") {
+            const glow = this.add.circle(cx, cy, 20, 0xfbbf24, 0.12).setDepth(2);
             this.tweens.add({
                 targets: glow, alpha: 0.03, duration: 1500, yoyo: true, repeat: -1
             });
@@ -651,14 +647,14 @@ this.player.setVelocity(vec.x, vec.y);
 
   _updateHint(near) {
     if (!near) { this.hintTxt.setVisible(false); return; }
-    const h = { cert: "[E] 📜 View Certificate", awards: "[E] 🏆 View Award", exit: "[E] 🚪 Leave the Hall"};
+    const h = { cert: "[E] 📜 View Certificate", exit: "[E] 🚪 Leave the Hall"};
     const t = h[near.type];
     if (t) this.hintTxt.setText(t).setVisible(true);
     else   this.hintTxt.setVisible(false);
   }
 
 _interact(near) {
-  if (near.type === "cert" || near.type === "awards") this._openPopup(near.name);
+  if (near.type === "cert") this._openPopup(near.name);
   else if (near.type === "exit") this._openConfirm();
 }
 
