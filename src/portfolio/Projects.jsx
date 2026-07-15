@@ -110,6 +110,16 @@ const categories = [
         status: "Live",
         featured: true,
       },
+      {
+        title: "RxVision: AI-Powered Prescription Scanner",
+        description: "A web application that uses AI to scan and interpret prescription images, providing users with medication information and dosage instructions. Built with a focus on accessibility and user-friendly design.",
+        tech: ["React", "Vite", "Tailwind CSS", "FastAPI (Python)", "Google Gemini 3.1 Flash-Lite", "Python-based OCR integration"],
+        icon: "💊",
+        github: "https://github.com/FreyaGrace/RxVision.git",
+        demo: "https://rx-vision-nine.vercel.app/", // Example link
+        status: "Live",
+        featured: true,
+      },
     ],
   },
 ];
